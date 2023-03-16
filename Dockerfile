@@ -1,4 +1,4 @@
-# base ubuntu official image
+# base ubuntu official image 
 FROM ubuntu
 
 # run a command (install a package)
@@ -13,10 +13,11 @@ ENV PATH=$PATH:$JAVA_HOME/bin
 WORKDIR /home/sd
 
 # copy the jar created by assembly to the docker image
-COPY target/*jar-with-dependencies.jar sd1920.jar
+COPY target/*jar-with-dependencies.jar sd2223.jar
 
 # copy the file of properties to the docker image
-COPY messages.props messages.props
+COPY feeds.props feeeds.props
+
 
 # run Discovery when starting the docker image
-CMD ["java", "-cp", "/home/sd/sd1920.jar", "sd1920.aula2.server.MessageServer"]
+CMD ["java", "-cp", "sd2223.jar", "aula2.server.UsersServer"]
