@@ -128,7 +128,7 @@ public interface FeedsService {
 	 *
 	 * @param user user being accessed (format user@domain)
 	 * @return 200 if ok
-	 * 403 is generated if the user does not exist or if the pwd is not correct
+	 * 403 is generated if the user does not exist
 	 */
 	@GET
 	@Path("/sub/list/{user}")
