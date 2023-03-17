@@ -33,7 +33,7 @@ public interface UsersService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	String createtUser(User user);
+	String createUser(User user);
 	
 	/**
 	 * Obtains the information on the user identified by name
