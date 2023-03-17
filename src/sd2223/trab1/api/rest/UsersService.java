@@ -12,12 +12,14 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
-
 import sd2223.trab1.api.User;
 
 @Path(UsersService.PATH)
 public interface UsersService {
 
+	String PWD = "pwd";
+	String NAME = "name";
+	String QUERY = "query";
 	String PATH = "/users";
 	
 	/**
@@ -31,7 +33,7 @@ public interface UsersService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	String postUser(User user);
+	String createtUser(User user);
 	
 	/**
 	 * Obtains the information on the user identified by name
@@ -43,9 +45,9 @@ public interface UsersService {
 	 *         404 if no user exists with the provided userId
 	 */
 	@GET
-	@Path("/{name}")
+	@Path("/{" + NAME+ "}")
 	@Produces(MediaType.APPLICATION_JSON)
-	User getUser(@PathParam("name") String name, @QueryParam("pwd") String pwd);
+	User getUser(@PathParam(NAME) String name, @QueryParam( PWD ) String pwd);
 	
 	/**
 	 * Modifies the information of a user. Values of null in any field of the user will be 
@@ -60,10 +62,10 @@ public interface UsersService {
 	 *         400 otherwise.
 	 */
 	@PUT
-	@Path("/{name}")
+	@Path("/{" + NAME+ "}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	User updateUser(@PathParam("name") String name, @QueryParam("pwd") String pwd, User user);
+	User updateUser(@PathParam( NAME ) String name, @QueryParam( PWD ) String pwd, User user);
 	
 	/**
 	 * Deletes the user identified by name
@@ -76,9 +78,9 @@ public interface UsersService {
 	 *         409 otherwise
 	 */
 	@DELETE
-	@Path("/{name}")
+	@Path("/{" + NAME+ "}")
 	@Produces(MediaType.APPLICATION_JSON)
-	User deleteUser(@PathParam("name") String name, @QueryParam("pwd") String pwd);
+	User deleteUser(@PathParam(NAME) String name, @QueryParam(PWD) String pwd);
 	
 	/**
 	 * Returns the list of users for which the pattern is a substring of the name
@@ -91,5 +93,5 @@ public interface UsersService {
 	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	List<User> searchUsers(@QueryParam("query") String pattern);
+	List<User> searchUsers(@QueryParam(QUERY) String pattern);
 }
