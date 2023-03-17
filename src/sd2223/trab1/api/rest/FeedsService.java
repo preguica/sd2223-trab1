@@ -39,7 +39,7 @@ public interface FeedsService {
 	 *			400 otherwise
 	 */
 	@POST
-	@Path("/{" + USER + "}/{" + DOMAIN + "}")
+	@Path("/{" + USER + "}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	long postMessage(@PathParam(USER) String user, @QueryParam(PWD) String pwd, Message msg);
