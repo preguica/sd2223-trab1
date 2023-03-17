@@ -1,8 +1,5 @@
 package sd2223.trab1.api;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Represents a message in the system.
  */
