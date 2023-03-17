@@ -70,8 +70,8 @@ public interface FeedsService {
 	Message getMessage(@PathParam("user") String user, @PathParam("mid") long mid);
 
 	/**
-	 * Returns a list of all messages stored in the server for a given user with timestamp smaller than time
-	 * (may be a remote user)
+	 * Returns a list of all messages stored in the server for a given user newer than time
+	 * (note: may be a remote user)
 	 * 
 	 * @param user user feed being accessed (format user@domain)
 	 * @param time the oldest time of the messages to be returned
