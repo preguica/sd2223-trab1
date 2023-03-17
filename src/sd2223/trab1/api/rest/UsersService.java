@@ -30,7 +30,6 @@ public interface UsersService {
 	 * 		400 otherwise.
 	 */
 	@POST
-	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	String createUser(User user);
