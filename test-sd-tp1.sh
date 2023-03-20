@@ -11,5 +11,6 @@ then
 fi 
 
 #execute the client with the given command line parameters
-docker run --rm --network=sdnet -it -v /var/run/docker.sock:/var/run/docker.sock nunopreguica/sd2223-tester-tp1:latest $*
+docker pull nunopreguica/sd2223-tester-tp1:latest
+docker run --rm --network=sdnet -it -v /var/run/docker.sock:/var/run/docker.sock nunopreguica/sd2223-tester-tp1 $*
 
