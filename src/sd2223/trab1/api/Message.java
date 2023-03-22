@@ -11,6 +11,13 @@ public class Message {
 	private long creationTime;
 	private String text;
 
+	public Message() {
+		this.id = -1;
+		this.user = null;
+		this.domain = null;
+		this.creationTime = -1;
+		this.text = null;
+	}
 	public Message(long id, String user, String domain, String text) {
 		this.id = id;
 		this.user = user;

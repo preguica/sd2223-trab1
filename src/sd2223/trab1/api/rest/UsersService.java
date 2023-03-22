@@ -42,6 +42,7 @@ public interface UsersService {
 	 *         existing password; 
 	 *         403 if the password is incorrect; 
 	 *         404 if no user exists with the provided userId
+	 * 		400 otherwise.
 	 */
 	@GET
 	@Path("/{" + NAME+ "}")
@@ -74,7 +75,7 @@ public interface UsersService {
 	 *         existing password 
 	 *         403 if the password is incorrect 
 	 *         404 if no user exists with the provided userId
-	 *         409 otherwise
+	 *         400 otherwise
 	 */
 	@DELETE
 	@Path("/{" + NAME+ "}")
