@@ -79,5 +79,20 @@
 			<artifactId>jaxb-runtime</artifactId>
 			<version>4.0.2</version>
 		</dependency>
+				<dependency>
+			<groupId>jakarta.xml.ws</groupId>
+			<artifactId>jakarta.xml.ws-api</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>rt</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 	</dependencies>
 </project>
