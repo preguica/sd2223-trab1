@@ -105,7 +105,6 @@ public interface FeedsService {
 	 */
 	@POST
 	@Path("/sub/{" + USER + "}/{" + USERSUB + "}")
-	@Produces(MediaType.APPLICATION_JSON)
 	void subUser(@PathParam(USER) String user, @PathParam(USERSUB) String userSub, @QueryParam(PWD) String pwd);
 
 	/**
@@ -122,7 +121,6 @@ public interface FeedsService {
 	 */
 	@DELETE
 	@Path("/sub/{" + USER + "}/{" + USERSUB + "}")
-	@Produces(MediaType.APPLICATION_JSON)
 	void unsubscribeUser(@PathParam(USER) String user, @PathParam(USERSUB) String userSub, @QueryParam(PWD) String pwd);
 
 
