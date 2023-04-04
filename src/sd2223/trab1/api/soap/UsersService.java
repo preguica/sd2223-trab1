@@ -39,7 +39,7 @@ public interface UsersService {
 	 * @throws UsersException otherwise
 	 */
 	@WebMethod
-	void updateUser(String name, String pwd, User user) throws UsersException;
+	User updateUser(String name, String pwd, User user) throws UsersException;
 	
 	/**
 	 * Deletes the user identified by userId. The spreadsheets owned by the user should be eventually removed (asynchronous
