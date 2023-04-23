@@ -51,7 +51,7 @@ public interface UsersService {
 	
 	/**
 	 * Modifies the information of a user. Values of null in any field of the user will be 
-	 * considered as if the the fields is not to be modified (the name cannot be modified).
+	 * considered as if the fields is not to be modified (the name cannot be modified).
 	 * @param name the name of the user
 	 * @param pwd password of the user
 	 * @param user Updated information
@@ -94,4 +94,5 @@ public interface UsersService {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	List<User> searchUsers(@QueryParam(QUERY) String pattern);
+
 }

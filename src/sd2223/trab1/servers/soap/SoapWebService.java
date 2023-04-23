@@ -1,6 +1,6 @@
 package sd2223.trab1.servers.soap;
 
-import aula5.api.java.Result;
+import sd2223.trab1.api.java.Result;
 
 import java.util.function.Function;
 

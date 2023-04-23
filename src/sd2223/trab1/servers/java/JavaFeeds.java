@@ -37,7 +37,7 @@ public class JavaFeeds implements Feeds {
     }
 
     @Override
-    public Result<Void> removeFormPersonalFeed(String user, long mid, String pwd){
+    public Result<Void> removeFromPersonalFeed(String user, long mid, String pwd){
         Log.info("getMessage : messageid= " + mid +" user = " + user + "; pwd = " + pwd);
         //Check if user data is valid
         if(user == null || pwd == null){

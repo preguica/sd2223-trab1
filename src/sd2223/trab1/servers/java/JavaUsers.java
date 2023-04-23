@@ -61,16 +61,63 @@ public class JavaUsers implements Users {
 
 	@Override
 	public Result<User> updateUser(String name, String pwd, User user) {
-		return Result.error( ErrorCode.NOT_IMPLEMENTED);
+		if(name == null || pwd == null) {
+			Log.info("Name or Password null.");
+			return Result.error( ErrorCode.BAD_REQUEST);
+		}
+		User oldUser = users.get(name);
+		if(oldUser == null){
+			Log.info("User does not exist.");
+			return Result.error( ErrorCode.NOT_FOUND);
+		}
+		if( !user.getName().equals( oldUser.getName())) {
+			Log.info("Cannot change UserID.");
+			return Result.error( ErrorCode.BAD_REQUEST);
+		}
+
+		if(!oldUser.getPwd().equals(pwd)){
+			Log.info("Password is incorrect.");
+			return Result.error( ErrorCode.FORBIDDEN);
+		}
+
+		if(user.getPwd() != null)
+			oldUser.setPwd(user.getPwd());
+		if(user.getDisplayName() != null)
+			oldUser.setDisplayName(user.getDisplayName());
+		if(user.getDomain() != null)
+			oldUser.setDomain(user.getDomain());
+
+		users.replace(name, oldUser);
+		return Result.ok(oldUser);
 	}
 
 	@Override
 	public Result<User> deleteUser(String name, String pwd) {
-		return Result.error( ErrorCode.NOT_IMPLEMENTED);
+		if(name == null || pwd == null) {
+			Log.info("Name or Password null.");
+			return Result.error( ErrorCode.BAD_REQUEST);
+		}
+
+		User user = users.get(name);
+		// Check if user exists
+		if( user == null ) {
+			Log.info("User does not exist.");
+			return Result.error( ErrorCode.NOT_FOUND);
+		}
+
+		//Check if the password is correct
+		if( !user.getPwd().equals( pwd)) {
+			Log.info("Password is incorrect.");
+			return Result.error( ErrorCode.FORBIDDEN);
+		}
+
+		User oldUser = users.remove(name);
+		return Result.ok( oldUser);
 	}
 
 	@Override
 	public Result<List<User>> searchUsers(String pattern) {
+
 		return Result.error( ErrorCode.NOT_IMPLEMENTED);
 	}
 

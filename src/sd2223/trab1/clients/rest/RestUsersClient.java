@@ -15,7 +15,7 @@ import java.util.List;
 public class RestUsersClient extends RestClient implements UsersService {
     final WebTarget target;
 
-    RestUsersClient(URI serverURI) {
+    public RestUsersClient(URI serverURI) {
         super(serverURI);
         target = client.target(serverURI).path(UsersService.PATH);
     }
@@ -25,50 +25,84 @@ public class RestUsersClient extends RestClient implements UsersService {
                 .accept(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(user, MediaType.APPLICATION_JSON));
 
-        if( r.getStatus() == Status.OK.getStatusCode() && r.hasEntity()){
+        if (r.getStatus() == Status.OK.getStatusCode() && r.hasEntity()) {
             return r.readEntity(String.class);
-        }else{
-            System.out.println("Error, HTTP error status: "+ r.getStatus());
+        } else {
+            System.out.println("Error, HTTP error status: " + r.getStatus());
         }
         return null;
     }
 
-    private User clt_getUser(String name, String pwd){
-        Response r = target.path(name).queryParam(UsersService.PWD, pwd).request().accept(MediaType.APPLICATION_JSON).get();
+    private User clt_getUser(String name, String pwd) {
+        Response r = target.path(name).queryParam(UsersService.PWD, pwd).request()
+                .accept(MediaType.APPLICATION_JSON).get();
 
-        if(r.getStatus() == Status.OK.getStatusCode() && r.hasEntity())
+        if (r.getStatus() == Status.OK.getStatusCode() && r.hasEntity())
             return r.readEntity(User.class);
         else
-            System.out.println("Error, HTTP error status: "+ r.getStatus());
+            System.out.println("Error, HTTP error status: " + r.getStatus());
+
+        return null;
+    }
+
+    private User clt_updateUser(String name, String pwd, User user) {
+        Response r = target.path(name).queryParam(UsersService.PWD, pwd).request()
+                .accept(MediaType.APPLICATION_JSON).put(Entity.entity(user, MediaType.APPLICATION_JSON));
+
+        if (r.getStatus() == Status.OK.getStatusCode() && r.hasEntity())
+            return r.readEntity(User.class);
+        else
+            System.out.println("Error, HTTP error status: " + r.getStatus());
+
+        return null;
+    }
+
+    private User clt_deleteUser(String name, String pwd) {
+        Response r = target.path(name).queryParam(UsersService.PWD, pwd).request()
+                .accept(MediaType.APPLICATION_JSON).delete();
+        if (r.getStatus() == Status.OK.getStatusCode() && r.hasEntity())
+            return r.readEntity(User.class);
+        else
+            System.out.println("Error, HTTP error status: " + r.getStatus());
+        return null;
+    }
+
+    private List<User> clt_searchUsers(String pattern) {
+        Response r = target.queryParam("q", pattern).request()
+                .accept(MediaType.APPLICATION_JSON).get();
+
+        if (r.getStatus() == Status.OK.getStatusCode() && r.hasEntity())
+            return r.readEntity(List.class);
+        else
+            System.out.println("Error, HTTP error status: " + r.getStatus());
 
         return null;
     }
 
     @Override
-    public String createUser(User user){
-        return super.reTry( () -> clt_createUser(user));
+    public String createUser(User user) {
+        return super.reTry(() -> clt_createUser(user));
     }
 
     @Override
-    public User getUser(String name, String pwd){
-        return super.reTry( () -> clt_getUser(name, pwd));
+    public User getUser(String name, String pwd) {
+        return super.reTry(() -> clt_getUser(name, pwd));
     }
 
     @Override
-    public User updateUser (String name, String pwd, User user){
-        return null;
-        //return super.reTry( () -> clt_updateUser(name, pwd, user));
+    public User updateUser(String name, String pwd, User user) {
+        return super.reTry(() -> clt_updateUser(name, pwd, user));
     }
 
     @Override
-    public User deleteUser (String name, String pwd){
-        return null;
-        //return super.reTry( () -> clt_deleteUser(name, pwd));
+    public User deleteUser(String name, String pwd) {
+        return super.reTry(() -> clt_deleteUser(name, pwd));
     }
 
     @Override
-    public List<User> searchUser (String pattern){
-        return null;
-        //return super.reTry( () -> clt_searchUser(pattern));
+    public List<User> searchUsers(String pattern) {
+        return super.reTry(() -> clt_searchUsers(pattern));
     }
+
+
 }

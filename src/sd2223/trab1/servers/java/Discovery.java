@@ -24,7 +24,7 @@ public interface Discovery {
      * @param serviceName - the name of the service
      * @param serviceURI - the uri of the service
      */
-    public void announce(String serviceName, String serviceURI);
+    public void announce(String domainName, String serviceName, String serviceURI);
 
     /**
      * Get discovered URIs for a given service name
@@ -79,11 +79,11 @@ class DiscoveryImpl implements Discovery {
     }
 
     @Override
-    public void announce(String serviceName, String serviceURI) {
+    public void announce(String domainName, String serviceName, String serviceURI) {
         Log.info(String.format("Starting Discovery announcements on: %s for: %s -> %s\n", DISCOVERY_ADDR, serviceName,
                 serviceURI));
 
-        var pktBytes = String.format("%s%s%s", serviceName, DELIMITER, serviceURI).getBytes();
+        var pktBytes = String.format("%s%s%s", domainName, serviceName, DELIMITER, serviceURI).getBytes();
         var pkt = new DatagramPacket(pktBytes, pktBytes.length, DISCOVERY_ADDR);
 
         // start thread to send periodic announcements

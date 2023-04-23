@@ -61,5 +61,5 @@ public interface UsersService {
 	List<User> searchUsers(String pattern) throws UsersException;
 
 	@WebMethod
-	void verifyPassword(String name, String pwd);
+	void verifyPassword(String name, String pwd) throws UsersException;
 }

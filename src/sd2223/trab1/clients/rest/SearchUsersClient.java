@@ -1,5 +1,7 @@
 package sd2223.trab1.clients.rest;
 
+import sd2223.trab1.api.User;
+
 import java.io.IOException;
 import java.net.URI;
 
@@ -19,6 +21,10 @@ public class SearchUsersClient {
 
         System.out.println("Sending request to server.");
 
-        new RestUsersClient(URI.create(serverUrl)).searchUsers(userId);
+        var result = new RestUsersClient(URI.create(serverUrl)).searchUsers(userId);
+        System.out.println("Result: " + result);
+        for (User u: result) {
+            System.out.println("User: " + u);
+        }
     }
 }
