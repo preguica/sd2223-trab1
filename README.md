@@ -8,4 +8,4 @@ Ficheiros alterados na versão 2:
 
 * pom.xml (nome do projeto)
 * feeds.props : adicionadas novas propriedades
-* test-sd-tp1.sh test-sd-tp1.bat : scripts para correr o tester do trabalho 2
+* test-sd-tp2.sh test-sd-tp2.bat : scripts para correr o tester do trabalho 2
