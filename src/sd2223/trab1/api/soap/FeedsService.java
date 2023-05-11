@@ -10,7 +10,7 @@ import sd2223.trab1.api.Message;
 public interface FeedsService {
 
 	static final String NAME = "feeds";
-	static final String NAMESPACE = "https://sd2223";
+	static final String NAMESPACE = "http://sd2223";
 	static final String INTERFACE = "sd2223.trab1.api.soap.FeedsService";
 	
 	/**
